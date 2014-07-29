@@ -13,5 +13,19 @@
         android:layout_height="wrap_content"
         android:textOn="LED on"
         android:textOff="LED off"
-        android:onClick="turnLEDOn"/>
+        android:onClick="turnLEDOn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Troop Name"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/togglebutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp" />
+
+
 </RelativeLayout>

@@ -6,20 +6,70 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import io.pinocc.pinocico.java.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 
 public class MyActivity extends Activity {
-    private static  String USER_AGENT = "Mozilla/5.0";
 
+    final PinoccioAPI pinoccioAPI = new PinoccioAPI();
+    Boolean isRunning = Boolean.FALSE;
+    int troopID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        if (!isRunning) {
+            isRunning = Boolean.TRUE;
+            Thread thread = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    try {
+                        final JsonObject obj = pinoccioAPI.troopsInAccount("q4vn2g1smdcmb5efuco1eoj184").get(0).getAsJsonObject();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                troopID = obj.get("id").getAsInt();
+                                Thread thread = new Thread(new Runnable(){
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            final JsonObject obj = pinoccioAPI.runBitlashCommand(troopID,2,"print temperature.f","q4vn2g1smdcmb5efuco1eoj184").getAsJsonObject();
+
+                                            System.out.println(obj.get("reply"));
+
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    //((TextView) findViewById(R.id.textView)).setText(obj.get("name").getAsString());
+                                                }
+                                            });
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
+                                thread.start();
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+
+
+        }
     }
 
 
@@ -41,6 +91,48 @@ public class MyActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void getAllData(){
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    final JsonObject obj = pinoccioAPI.troopsInAccount("q4vn2g1smdcmb5efuco1eoj184").get(0).getAsJsonObject();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((TextView) findViewById(R.id.textView2)).setText(obj.get("name").getAsString());
+                            troopID = obj.get("id").getAsInt();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        System.out.println(troopID);
+
+        thread = null;
+        thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    final JsonArray obj = pinoccioAPI.scoutsInTroop(troopID,"q4vn2g1smdcmb5efuco1eoj184").getAsJsonArray();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //((TextView) findViewById(R.id.textView2)).setText(obj.get("name").getAsString());
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
+
     boolean onOff;
     int TROOP_ID_INT = 4;
     int SCOUT_ID_INT = 2;
@@ -51,7 +143,7 @@ public class MyActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    pinoccioAPI.troopsInAccount("q4vn2g1smdcmb5efuco1eoj184"); 
+
                     onOff = ((ToggleButton) findViewById(R.id.togglebutton)).isChecked();
                     if (onOff) {
                         pinoccioAPI.turnLEDOn(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
