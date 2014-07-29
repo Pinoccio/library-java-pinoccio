@@ -35,3 +35,11 @@ Get all troops in account;
 ```java
 pinoccioAPI.troopsInAccount(SESSION_TOKEN_STRING);
 ```
+Get all scouts in troop;
+```java
+pinoccioAPI.scoutsInTroop(TROOP_ID_INT,SESSION_TOKEN_STRING);
+```
+Run bitlash command on scout;
+```java
+pinoccioAPI.runBitlashCommand(TROOP_ID_INT, SCOUT_ID_INT,"print temperature.f",SESSION_TOKEN_STRING); // We handle URL encoding for you :)
+```
