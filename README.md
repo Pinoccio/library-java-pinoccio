@@ -3,6 +3,8 @@ library-java-pinoccio
 
 Java library for the Pinoccio API w/ Example app.
 
+Please, if you have any improvements to add, clone, fix, and create a pull request.
+
 How to
 ======
 1. Download the compiled jar [here](https://github.com/Pinoccio/library-java-pinoccio/releases)
