@@ -51,7 +51,7 @@ public class MyActivity extends Activity {
             @Override
             public void run() {
                 try {
-                    pinoccioAPI.troopsInAccount("q4vn2g1smdcmb5efuco1eoj184");
+                    pinoccioAPI.troopsInAccount("q4vn2g1smdcmb5efuco1eoj184"); 
                     onOff = ((ToggleButton) findViewById(R.id.togglebutton)).isChecked();
                     if (onOff) {
                         pinoccioAPI.turnLEDOn(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
