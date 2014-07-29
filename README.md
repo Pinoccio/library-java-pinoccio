@@ -24,13 +24,14 @@ String SESSION_TOKEN_STRING = "q4vn2g1smdcmb5efuco1eoj184"; // define token
 ```
 
 Turn your LED on;
-
-    pinoccioAPI.turnLEDOn(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
-
+```java
+pinoccioAPI.turnLEDOn(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
+```
 Turn your LED off;
-
-    pinoccioAPI.turnLEDOff(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
-
+```java
+pinoccioAPI.turnLEDOff(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
+```
 Get all troops in account;
-
-    pinoccioAPI.troopsInAccount(SESSION_TOKEN_STRING);
+```java
+pinoccioAPI.troopsInAccount(SESSION_TOKEN_STRING);
+```
