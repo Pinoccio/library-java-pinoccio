@@ -16,10 +16,10 @@ How to
 Functions
 =========
 Initialize the API and create variables to use globally or locally;
-    'PinoccioAPI pinoccioAPI = new PinoccioAPI();
-    int TROOP_ID_INT = 4;
-    int SCOUT_ID_INT = 2;
-    String SESSION_TOKEN_STRING = "q4vn2g1smdcmb5efuco1eoj184";'
+    `PinoccioAPI pinoccioAPI = new PinoccioAPI(); // init local variable`
+    `int TROOP_ID_INT = 4; // define troop id`
+    `int SCOUT_ID_INT = 2; // define scout id in troop` 
+    `String SESSION_TOKEN_STRING = "q4vn2g1smdcmb5efuco1eoj184"; // define token`
  
 Turn your LED on;
     pinoccioAPI.turnLEDOn(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
