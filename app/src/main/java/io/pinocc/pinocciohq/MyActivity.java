@@ -34,7 +34,10 @@ public class MyActivity extends Activity {
                 @Override
                 public void run() {
                     try {
-                        final JsonObject obj = pinoccioAPI.troopsInAccount("q4vn2g1smdcmb5efuco1eoj184").get(0).getAsJsonObject();
+                        final JsonObject objobj= pinoccioAPI.loginWithCredentials("dylan@pinocc.io","Dman6049");
+                        System.out.println(objobj);
+
+                        final JsonObject obj = pinoccioAPI.troopsInAccount(objobj.get("token").getAsString()).get(0).getAsJsonObject();
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -43,9 +46,11 @@ public class MyActivity extends Activity {
                                     @Override
                                     public void run() {
                                         try {
-                                            final JsonObject obj = pinoccioAPI.runBitlashCommand(troopID,2,"print temperature.f","q4vn2g1smdcmb5efuco1eoj184").getAsJsonObject();
+                                            //final JsonObject objobj= pinoccioAPI.loginWithCredentials("dylan@pinocc.io","Dman6049");
+                                            //System.out.println(objobj);
 
-                                            System.out.println(obj.get("reply"));
+                                            final boolean obj = pinoccioAPI.logoutWithSession(objobj.get("token").getAsString());
+                                            System.out.println(obj);
 
                                             runOnUiThread(new Runnable() {
                                                 @Override
