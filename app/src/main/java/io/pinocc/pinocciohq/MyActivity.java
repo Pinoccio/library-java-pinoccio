@@ -34,7 +34,7 @@ public class MyActivity extends Activity {
                 @Override
                 public void run() {
                     try {
-                        final JsonObject objobj= pinoccioAPI.loginWithCredentials("dylan@pinocc.io","Dman6049");
+                        final JsonObject objobj= pinoccioAPI.loginWithCredentials("dylan@pinocc.io","");
                         System.out.println(objobj);
 
                         final JsonObject obj = pinoccioAPI.troopsInAccount(objobj.get("token").getAsString()).get(0).getAsJsonObject();
