@@ -42,6 +42,9 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     boolean onOff;
+    int TROOP_ID_INT = 4;
+    int SCOUT_ID_INT = 2;
+    String SESSION_TOKEN_STRING = "q4vn2g1smdcmb5efuco1eoj184";
     public void turnLEDOn(View viw) throws IOException {
         final PinoccioAPI pinoccioAPI = new PinoccioAPI();
         Thread thread = new Thread(new Runnable(){
@@ -51,9 +54,9 @@ public class MyActivity extends Activity {
                     pinoccioAPI.troopsInAccount("q4vn2g1smdcmb5efuco1eoj184");
                     onOff = ((ToggleButton) findViewById(R.id.togglebutton)).isChecked();
                     if (onOff) {
-                        pinoccioAPI.turnLEDOn(4, 2, "q4vn2g1smdcmb5efuco1eoj184");
+                        pinoccioAPI.turnLEDOn(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
                     }else {
-                        pinoccioAPI.turnLEDOff(4, 2, "q4vn2g1smdcmb5efuco1eoj184");
+                        pinoccioAPI.turnLEDOff(TROOP_ID_INT, SCOUT_ID_INT, SESSION_TOKEN_STRING);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
