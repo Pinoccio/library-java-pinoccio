@@ -5,7 +5,7 @@ Java library for the Pinoccio API w/ Example app.
 
 How to
 ======
-1. Download the compiled jar [here](http://haifisch.ninja/library-java-pinoccio.zip)
+1. Download the compiled jar [here](https://github.com/Pinoccio/library-java-pinoccio/releases)
 2. Import the jar to your project
 3. Import the library into your Java source
     import io.pinocc.pinocico.java.*;
